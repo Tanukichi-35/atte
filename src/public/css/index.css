@@ -2,7 +2,7 @@
   margin: 0;
   height: 100%;
   padding-top: 10px;
-  background-color: #F1ECE7;
+  background-color: #F2F2F2;
   text-align: center;
 }
 
@@ -11,7 +11,7 @@
 }
 
 .form__atte{
-  width: 90%;
+  width: 80%;
   height: calc(100% - 200px);
   margin: auto;
 }
