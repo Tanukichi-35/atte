@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AttendanceController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware('auth')->group(function () {
+    $user = Auth::user();
+    // dd($user);
+    Route::get('/', [AttendanceController::class, 'index']);
 });
+
+Route::get('/attendance', [
+    AttendanceController::class, 'attendance'
+]);
