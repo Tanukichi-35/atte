@@ -1,0 +1,60 @@
+.div__main {
+  margin: 0;
+  height: 100%;
+  padding-top: 10px;
+  background-color: #F2F2F2;
+  text-align: center;
+}
+
+.nav__date{
+  height: 50px;
+}
+
+.nav__date li{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: auto;
+  height: 20px;
+  margin: 15px;
+}
+
+.nav__date a {
+  /* display: block; */
+  width: 30px;
+  text-decoration: none;
+  color: #2384CF;
+  background-color: #fff;
+  border: 1px solid #214BE0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.nav__date p{
+  font-weight: bold;
+  margin: 0 30px;
+}
+
+/* attendancesテーブル */
+.table__attendances {
+  width: 80%;
+  height: calc(100% - 200px);
+  margin: auto;
+  margin-bottom: 50px;
+}
+
+.table__attendances>tr{
+  height: 30px;
+}
+
+.tr__header>th{
+  text-align: left;
+  padding: 10px 30px;
+  border-top: 2px solid #E0DFDE;
+}
+
+.tr__contents>td{
+  text-align: left;
+  padding: 10px 30px;
+  border-top: 2px solid #E0DFDE;
+}

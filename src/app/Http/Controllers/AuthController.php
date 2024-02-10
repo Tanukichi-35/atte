@@ -3,17 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Contact;
-use App\Models\Category;
+use App\Models\User;
+use App\Models\Attendance;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function admin()
+    public function index()
     {
-        // $contacts = Contact::all();
-        // return view('admin', compact('contacts'));
-        $contacts = Contact::Paginate(7);
-        $categories = Category::All();
-        return view('admin', compact('contacts', 'categories'));
+        $user = Auth::user();
+        // dd($user);
+        return view('index', compact('user'));
+    }
+
+    public function attendance()
+    {
+        // $date = $_GET["date"];
+        // dd($date);
+        // $users = User::All();
+        $attendances = Attendance::Paginate(5);
+        return view('attendance', compact('attendances'));
     }
 }
