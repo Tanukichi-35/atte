@@ -38,7 +38,7 @@
 /* attendancesテーブル */
 .table__attendances {
   width: 80%;
-  height: calc(100% - 200px);
+  /* height: calc(100% - 200px); */
   margin: auto;
   margin-bottom: 50px;
 }
