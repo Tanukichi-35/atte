@@ -41,3 +41,15 @@
   font-size: 24px;
   font-weight: bold;
 }
+
+.div__menu button:disabled{
+  color: #E5E5E5;
+  cursor: auto;
+}
+
+.div__status{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  visibility: collapse;
+}

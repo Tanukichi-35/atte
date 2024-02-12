@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AttendanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,19 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/attendance/{date}', [AuthController::class, 'attendance']);
 });
+
+Route::post('/work-start', [
+    AttendanceController::class, 'workStart'
+]);
+
+Route::post('/work-end', [
+    AttendanceController::class, 'workEnd'
+]);
+
+Route::post('/break-start', [
+    AttendanceController::class, 'breakStart'
+]);
+
+Route::post('/break-end', [
+    AttendanceController::class, 'breakEnd'
+]);

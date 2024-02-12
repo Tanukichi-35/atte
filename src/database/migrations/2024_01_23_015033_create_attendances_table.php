@@ -17,9 +17,10 @@ class CreateAttendancesTable extends Migration
             $table->id();
             $table->bigInteger('user_id');
             $table->tinyInteger('status');
-            $table->string('work_start',8);
-            $table->string('work_end',8);
-            $table->string('break_time',8);
+            $table->string('work_start', 8)->nullable();
+            $table->string('work_end', 8)->nullable();
+            $table->string('break_start', 8)->nullable();
+            $table->string('break_time', 8)->nullable();
             $table->timestamps();
         });
     }
