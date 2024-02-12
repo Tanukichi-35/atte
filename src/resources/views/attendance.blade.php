@@ -21,9 +21,9 @@
 <div class="div__main">
   <nav class="nav__date">
     <li>
-      <a href="" rel="prev" aria-label="@lang('pagination.previous')">&lt;</a>
-      <p >2024-2-10</p>
-      <a href="" rel="next" aria-label="@lang('pagination.next')">&gt;</a>
+      <a href={{"/attendance/previous/".$date}} rel="prev" aria-label="@lang('pagination.previous')">&lt;</a>
+      <p >{{$date}}</p>
+      <a href={{"/attendance/next/".$date}} rel="next" aria-label="@lang('pagination.next')">&gt;</a>
     </li>
   </nav>
   <table class="table__attendances">

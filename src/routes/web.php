@@ -23,8 +23,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/attendance', [AuthController::class, 'attendance']);
 });
 
+// Route::middleware('auth')->group(function () {
+//     Route::get('/attendance/{date}', [AuthController::class, 'attendance']);
+// });
+
 Route::middleware('auth')->group(function () {
-    Route::get('/attendance/{date}', [AuthController::class, 'attendance']);
+    Route::get('/attendance/previous/{date}', [AuthController::class, 'attendancePrevious']);
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/attendance/next/{date}', [AuthController::class, 'attendanceNext']);
 });
 
 Route::post('/work-start', [

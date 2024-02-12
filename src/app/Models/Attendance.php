@@ -70,4 +70,10 @@ class Attendance extends Model
 
         return $sum;
     }
+
+    // 日付が一致するアイテムを取得
+    public static function getAttendances(string $date){
+        // return Attendance::where("created_at", "LIKE", $date."%")->get();
+        return Attendance::where("created_at", "LIKE", $date."%")->Paginate(5);
+    }
 }
