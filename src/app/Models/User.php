@@ -48,16 +48,16 @@ class User extends Authenticatable
     {
         $attendance = $this->getAttendance($this->id);
         // dd($attendance);
-        if(is_null($attendance)){
+        if(is_null($attendance)){     // 勤務開始前
             return sprintf("%sさん、おはようございます！", $this->name);
         }
-        else if($attendance->status === 1){
+        else if($attendance->status === 1){     // 勤務中
             return sprintf("%sさん、お疲れ様です！", $this->name);
         }
-        else if($attendance->status === 2){
+        else if($attendance->status === 2){     // 勤務終了
             return sprintf("%sさん、お疲れ様でした！", $this->name);
         }
-        else if($attendance->status === 3){
+        else if($attendance->status === 3){     // 休憩中
             return sprintf("%sさん、少し休憩しましょう！", $this->name);
         }
     }
@@ -65,7 +65,7 @@ class User extends Authenticatable
     // ステータスを取得
     public function getStatus(){
         $attendance = $this->getAttendance($this->id);
-        if(empty($attendance)){
+        if(empty($attendance)){     // データが存在しない場合は、0を返す
             return 0;
         }
         else{
@@ -76,7 +76,7 @@ class User extends Authenticatable
     // IDを取得
     public function getAttendanceID(){
         $attendance = $this->getAttendance($this->id);
-        if(empty($attendance)){
+        if(empty($attendance)){     // データが存在しない場合は、0を返す
             return 0;
         }
         else{

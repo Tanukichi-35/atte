@@ -1,5 +1,6 @@
 window.onload = function () {
 
+  // 打刻ページのボタンの有効/無効をステータスに応じて変更
   if (location.pathname == "/") {
     const button__workStart = document.getElementById('button__work-start');
     const button__workEnd = document.getElementById('button__work-end');
