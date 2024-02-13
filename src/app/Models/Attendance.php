@@ -18,7 +18,7 @@ class Attendance extends Model
         'break_time',
     ];
 
-    // ユーザーIDの取得
+    // ユーザー名の取得
     public function getName()
     {
         $user = User::find($this->user_id);
@@ -32,46 +32,47 @@ class Attendance extends Model
             return null;
         }
 
-        return $this->calcInterval($this->work_start, $this->work_end);
+        // 差を取得
+        $second = $this->convertSecond($this->work_end) - $this->convertSecond($this->work_start);
+        // 時間に変換
+        $time = $this->convertTime($second);
+
+        return $time;
     }
 
     // 休憩時間の取得
-    public function getBreakTime(string $break_time, string $break_start, string $break_end)
+    public function getBreakTime(string $break_end)
     {
-        $time_add = $this->calcInterval($break_start, $break_end);
-        $break_time = $this->addTime($break_time, $time_add);
+        // 差を取得
+        $second = $this->convertSecond($break_end) - $this->convertSecond($this->break_start);
+        // 加算
+        $second += $this->convertSecond($this->break_time);
+        // 時間に変換
+        $time = $this->convertTime($second);
 
-        return $break_time;
+        return $time;
     }
 
-    // 時間の差を取得
-    public function calcInterval(string $start_at, string $end_at){
-        $start_at = explode(":", $start_at);
-        $end_at = explode(":", $end_at);
-        $hour = (int)$end_at[0] - (int)$start_at[0];
-        if($hour < 0){          // 日を跨いで勤務した場合
-            $hour += 24;
-        }
-        $minute = (int)$end_at[1] - (int)$start_at[1];
-        $second = (int)$end_at[2] - (int)$start_at[2];
-        $Interval = sprintf("%02d:%02d:%02d", $hour, $minute, $second);
-
-        return $Interval;
-    }
-
-    // 時間を追加
-    public function addTime(string $time, string $time_add){
+    // 時間文字列を整数秒に変換
+    public function convertSecond(string $time){
         $time = explode(":", $time);
-        $time_add = explode(":", $time_add);
-        $hour = (int)$time[0] + (int)$time_add[0];
-        $minute = (int)$time[1] + (int)$time_add[1];
-        $second = (int)$time[2] + (int)$time_add[2];
-        $sum = sprintf("%02d:%02d:%02d", $hour, $minute, $second);
+        $second = (int)$time[0]*3600 + (int)$time[1]*60 + (int)$time[2];
 
-        return $sum;
+        return $second;
     }
 
-    // 日付が一致するアイテムを取得
+    // 整数秒を時間文字列に変換
+    public function convertTime(int $second){
+        $hour = (int)($second / 3600);
+        $second = $second % 3600;
+        $minute = (int)($second / 60);
+        $second = $second % 60;
+        $time = sprintf("%02d:%02d:%02d", $hour, $minute, $second);
+
+        return $time;
+    }
+
+    // 日付が一致するアイテムを取得し、5件毎にページ割り
     public static function getAttendances(string $date){
         // return Attendance::where("created_at", "LIKE", $date."%")->get();
         return Attendance::where("created_at", "LIKE", $date."%")->Paginate(5);

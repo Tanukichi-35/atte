@@ -62,10 +62,7 @@ class AttendanceController extends Controller
       // アイテムを更新
       $attendance->update([
         'status' => 1,  // 勤務中
-        'break_time' => $attendance->getBreakTime(
-          $attendance->break_time,
-          $attendance->break_start,
-          date('H:i:s')),
+        'break_time' => $attendance->getBreakTime(date('H:i:s')),
       ]);
 
       // 画面を更新
