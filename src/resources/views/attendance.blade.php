@@ -39,7 +39,7 @@
       <td>{{$attendance->getName()}}</td>
       <td>{{$attendance->work_start}}</td>
       <td>{{$attendance->work_end}}</td>
-      <td>{{$attendance->break_time}}</td>
+      <td>{{$attendance->getBreakTime()}}</td>
       <td>{{$attendance->getWorkTime()}}</td>
     </tr>
     @endforeach

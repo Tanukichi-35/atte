@@ -37,8 +37,11 @@
       <label>ユーザーID：
         <input type="text" name="user_id" class="input__user" value={{$user->id}}>
       </label>
-      <label>出勤簿ID：
+      <label>勤怠ID：
         <input type="text" name="attendance_id" class="input__attendance" value={{$user->getAttendanceID()}}>
+      </label>
+      <label>休憩ID：
+        <input type="text" name="rest_id" class="input__rest" value={{$user->getRestID()}}>
       </label>
       <label>ステータス：
         <input type="text" name="status" class="input__status" id="input__status" value={{$user->getStatus()}}>

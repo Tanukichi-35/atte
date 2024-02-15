@@ -29,7 +29,7 @@ class AuthController extends Controller
 
     // 一つ前の日付の勤怠ページを表示
     public function attendancePrevious($strDate){
-        // 表示中の日付を取得し、一日ずらす
+        // 表示中の日付を取得し、一日進める
         $date = DateTime::createFromFormat('Y-m-d', $strDate);
         $date->modify('-1 day');
 
@@ -43,7 +43,7 @@ class AuthController extends Controller
 
     // 一つ後の日付の勤怠ページを表示
     public function attendanceNext($strDate){
-        // 表示中の日付を取得し、一日ずらす
+        // 表示中の日付を取得し、一日戻す
         $date = DateTime::createFromFormat('Y-m-d', $strDate);
         $date->modify('+1 day');
 

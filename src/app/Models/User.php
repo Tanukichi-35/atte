@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Attendance;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -43,10 +42,15 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    // Attendanceモデルとの紐づけ
+    public function attendances(){
+        return $this->hasMany('App\Models\Attendance');
+    }
+
     // ステータスによってメッセージを切り替え
     public function getMessage()
     {
-        $attendance = $this->getAttendance($this->id);
+        $attendance = $this->getAttendance();
         // dd($attendance);
         if(is_null($attendance)){     // 勤務開始前
             return sprintf("%sさん、おはようございます！", $this->name);
@@ -64,7 +68,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     // ステータスを取得
     public function getStatus(){
-        $attendance = $this->getAttendance($this->id);
+        $attendance = $this->getAttendance();
         if(empty($attendance)){     // データが存在しない場合は、0を返す
             return 0;
         }
@@ -73,9 +77,9 @@ class User extends Authenticatable implements MustVerifyEmail
         }
     }
 
-    // IDを取得
+    // 勤怠IDを取得
     public function getAttendanceID(){
-        $attendance = $this->getAttendance($this->id);
+        $attendance = $this->getAttendance();
         if(empty($attendance)){     // データが存在しない場合は、0を返す
             return 0;
         }
@@ -84,8 +88,25 @@ class User extends Authenticatable implements MustVerifyEmail
         }
     }
 
-    // ユーザーと日付が一致するアイテムを取得
-    public static function getAttendance(int $user_id){
-        return Attendance::where("user_id", $user_id)->where("created_at", "LIKE", date('Y-m-d')."%")->first();
+    // 休憩IDを取得
+    public function getRestID(){
+        $attendance = $this->getAttendance();
+        if(empty($attendance)){     // データが存在しない場合は、0を返す
+            return 0;
+        }
+        else{
+            $rest = $attendance->getRest($attendance->id);
+            if(empty($rest)){     // データが存在しない場合は、0を返す
+                return 0;
+            }
+            else{
+                return $rest->id;
+            }
+        }
+    }
+
+    // ユーザーと日付が一致する勤怠アイテムを取得
+    public function getAttendance(){
+        return User::find($this->id)->attendances->where("date", date('Y-m-d'))->first();
     }
 }
