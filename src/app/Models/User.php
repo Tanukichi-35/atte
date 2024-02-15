@@ -109,4 +109,9 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getAttendance(){
         return User::find($this->id)->attendances->where("date", date('Y-m-d'))->first();
     }
+
+    // 5件毎にページ割り
+    public static function getUsers(){
+        return User::Paginate(5);
+    }
 }

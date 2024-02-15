@@ -1,0 +1,51 @@
+.div__main {
+  margin: 0;
+  height: 100%;
+  padding-top: 10px;
+  background-color: #F2F2F2;
+  text-align: center;
+}
+
+/* usersテーブル */
+.table__users {
+  width: 80%;
+  /* height: calc(100% - 200px); */
+  margin: auto;
+  margin-bottom: 50px;
+}
+
+.table__users>tr{
+  height: 30px;
+}
+
+.tr__header>th{
+  text-align: left;
+  padding: 10px 30px;
+  border-top: 2px solid #E0DFDE;
+}
+
+.tr__contents>td{
+  text-align: left;
+  padding: 10px 30px;
+  border-top: 2px solid #E0DFDE;
+}
+
+.tr__contents>td {
+  text-align: left;
+  padding: 10px 30px;
+  border-top: 2px solid #E0DFDE;
+}
+
+.tr__contents:last-child {
+  border-bottom: 2px solid #E0DFDE;
+}
+
+.tr__contents a{
+  text-decoration: none;
+  color: #000;
+  background-color: #E0DFDE;
+  width: 120px;
+  display: block;
+  text-align: center;
+  border-radius: 2px;
+}

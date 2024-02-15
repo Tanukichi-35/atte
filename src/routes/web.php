@@ -33,6 +33,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/attendance/next/{date}', [AuthController::class, 'attendanceNext']);
 });
 
+Route::middleware('auth')->group(function () {
+    Route::get('/users', [AuthController::class, 'users']);
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/user/{id}', [AuthController::class, 'userAttendance']);
+});
+
 Route::post('/work-start', [
     AttendanceController::class, 'workStart'
 ]);

@@ -8,6 +8,7 @@
 <ul>
   <li><a href="/">ホーム</a></li>
   <li><a href="/attendance">日付一覧</a></li>
+  <li><a href="/users">ユーザー一覧</a></li>
   <li>
     <form action="/logout" method="POST">
       @csrf
@@ -19,7 +20,6 @@
 
 @section('content')
 <div class="div__main">
-  {{-- <h2 class="h2__atte">{{"$user->name"}}さんお疲れ様です！</h2> --}}
   <h2 class="h2__atte">{{$user->getMessage()}}</h2>
   <form method="POST" class="form__atte">
     @csrf
