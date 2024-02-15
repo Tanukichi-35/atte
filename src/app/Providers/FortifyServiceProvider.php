@@ -24,24 +24,7 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->instance(LoginResponse::class, new class implements LoginResponse {
-            public function toResponse($request)
-            {
-                return redirect('/');
-            }
-        });
-
-        $this->app->instance(LogoutResponse::class, new class implements LogoutResponse {
-            public function toResponse($request)
-            {
-                return redirect('/login');
-            }
-        });
-
-        $this->app->singleton(
-            RegisteredUserController::class,
-            RegisterController::class
-        );
+        //
     }
 
     /**
@@ -72,6 +55,11 @@ class FortifyServiceProvider extends ServiceProvider
         // GETメソッドで/loginにアクセスした際に表示するviewファイル
         Fortify::loginView(function () {
             return view('auth.login');
+        });
+
+        // GETメソッドで/email/verifyにアクセスした際に表示するviewファイル
+        Fortify::verifyEmailView(function () {
+            return view('auth.verify');
         });
 
         // login処理の実行回数を1分当たり10回までに制限
