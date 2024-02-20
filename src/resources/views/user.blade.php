@@ -8,7 +8,7 @@
 <ul>
   <li><a href="/">ホーム</a></li>
   <li><a href="/attendance">日付一覧</a></li>
-  <li><a href="/users">ユーザー一覧</a></li>
+  <li><a href="/user">ユーザー一覧</a></li>
   <li>
     <form action="/logout" method="POST">
       @csrf

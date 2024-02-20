@@ -49,6 +49,7 @@ class Attendance extends Model
     }
 
     // 休憩時間の取得
+    // 勤怠アイテムと紐づいている休憩アイテムを全て取得し、合算
     public function getBreakTime()
     {
         $break_time = new DateTime("00:00:00");

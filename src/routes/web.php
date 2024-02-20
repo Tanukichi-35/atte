@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/users', [AuthController::class, 'users']);
+    Route::get('/user', [AuthController::class, 'user']);
 });
 
 Route::middleware('auth')->group(function () {

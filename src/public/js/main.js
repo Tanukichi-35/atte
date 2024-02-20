@@ -34,11 +34,11 @@ window.onload = function () {
     }
   }
   else if (location.pathname == "/attendance"){
+
   }
-    
   else if (location.pathname == "/login"){
+
   }
-    
   else if (location.pathname == "/register") {
     
   }

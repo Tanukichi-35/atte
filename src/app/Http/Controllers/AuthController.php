@@ -56,8 +56,8 @@ class AuthController extends Controller
     }
 
     // ユーザー一覧ページを表示
-    public function users(){
-        // ユーザーを取得
+    public function user(){
+        // 全ユーザーを取得
         $users = User::getUsers();
 
         return view('user', compact('users'));
@@ -65,10 +65,10 @@ class AuthController extends Controller
 
     // ユーザー別勤怠ページを表示
     public function userAttendance($user_id){
-        // ユーザーを取得
+        // ユーザーIDが一致するユーザーを取得
         $user = User::find($user_id);
 
-        // ユーザーが一致するデータを取得
+        // ユーザーが一致する勤怠データを取得
         $attendances = Attendance::Where('user_id', $user_id)->Paginate(5);
 
         // dd($user, $attendances);
